@@ -7,7 +7,11 @@ let pokemonRepository = (function(){
   ];
 
   function add(pokemon){
+    if(typeof pokemon === "object"){
     pokemonList.push(pokemon);
+  } else{
+    alert("Please enter a valid pokemon.");
+  }
   }
 
   function getAll(){
@@ -32,20 +36,4 @@ pokemonPrint.forEach(function(pokemon){
   document.write("<br>");
 });
 
-/*
-console.log(pokemonRepository.getAll());
-pokemonRepository.add({name: "Diglet"});
-console.log(pokemonRepository);
-*/
-
-/*
-for(let i = 0; i < pokemonList.length; i++){
-  document.write(`${pokemonList[i].name}   (height: ${pokemonList[i].height})`);
-
-  if(pokemonList[i].height > 0.6){
-    document.write(" - Wow, that's big!");
-  }
-
-  document.write("<br>");
-}
-*/
+pokemonRepository.add("ass");
