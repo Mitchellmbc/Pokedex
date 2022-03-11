@@ -7,7 +7,7 @@ let pokemonRepository = (function(){
   ];
 
   function add(pokemon){
-    if(typeof pokemon === "object"){
+    if(typeof pokemon === "object" && Object.keys(pokemon).length === Object.keys(pokemonList[0]).length){
     pokemonList.push(pokemon);
   } else{
     alert("Please enter a valid pokemon.");
@@ -36,4 +36,6 @@ pokemonPrint.forEach(function(pokemon){
   document.write("<br>");
 });
 
-pokemonRepository.add("ass");
+pokemonRepository.add({name: "Diglet", height: 1.2, types: ["fighter", "dark"]});
+
+console.log(pokemonRepository.getAll());
