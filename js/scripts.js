@@ -6,15 +6,31 @@ let pokemonRepository = (function(){
   {name: "Squirtle", height: 0.5, types: ["water"]}
   ];
 
+  function add(pokemon){
+    pokemonList.push(pokemon);
+  }
+
+  function getAll(){
+    return pokemonList;
+  }
+
   return {
-    add: function(pokemon){
-      pokemonList.push(pokemon);
-    },
-    getAll: function(){
-      return pokemonList;
-    }
+    add: add,
+    getAll: getAll
   };
 })();
+
+let pokemonPrint = pokemonRepository.getAll();
+
+pokemonPrint.forEach(function(pokemon){
+  document.write(`${pokemon.name}   (height: ${pokemon.height})`);
+
+  if(pokemon.height > 0.6){
+    document.write(" - Wow, that's big!");
+  }
+
+  document.write("<br>");
+});
 
 /*
 console.log(pokemonRepository.getAll());
