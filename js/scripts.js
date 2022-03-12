@@ -6,8 +6,20 @@ let pokemonRepository = (function(){
   {name: "Squirtle", height: 0.5, types: ["water"]}
   ];
 
+  function isEqual(array1,array2){
+    if(array1.length === array2.length){
+      for(let i = 0; i < array1.length; i++){
+        if(array1[i] !== array2[i]){
+          return false;
+        }
+      }
+      return true;
+    }
+    return false;
+  }
+
   function add(pokemon){
-    if(typeof pokemon === "object" && Object.keys(pokemon).length === Object.keys(pokemonList[0]).length){
+    if(typeof pokemon === "object" && isEqual(Object.keys(pokemon), Object.keys(pokemonList[0]))){
     pokemonList.push(pokemon);
   } else{
     alert("Please enter a valid pokemon.");
@@ -36,6 +48,6 @@ pokemonPrint.forEach(function(pokemon){
   document.write("<br>");
 });
 
-pokemonRepository.add({name: "Diglet", height: 1.2, types: ["fighter", "dark"]});
+pokemonRepository.add({name: "Diglet", types: ["fighter", "dark"]});
 
 console.log(pokemonRepository.getAll());
