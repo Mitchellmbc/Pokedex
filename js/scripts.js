@@ -34,23 +34,28 @@ let pokemonRepository = (function(){
     return pokemonList.filter((pokemon) => {name === pokemon.name});
   }
 
+  function addListItem(pokemon){
+    let list = document.querySelector(".pokemon-list");
+    let listItem = document.createElement('li');
+    let button = document.createElement('button');
+    button.innerText = pokemon.name;
+    button.classList.add('pokemon-button');
+    listItem.appendChild(button);
+    list.appendChild(listItem);
+  }
+
   return {
     add: add,
     getAll: getAll,
-    search: search
+    search: search,
+    addListItem: addListItem
   };
 })();
 
 let pokemonPrint = pokemonRepository.getAll();
 
 pokemonPrint.forEach(function(pokemon){
-  document.write(`${pokemon.name}   (height: ${pokemon.height})`);
-
-  if(pokemon.height > 0.6){
-    document.write(" - Wow, that's big!");
-  }
-
-  document.write("<br>");
+  pokemonRepository.addListItem(pokemon);
 });
 
 pokemonRepository.add({name: "Diglet", height: 1.2, types: ["fighter", "dark"]});
