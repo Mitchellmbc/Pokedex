@@ -30,9 +30,14 @@ let pokemonRepository = (function(){
     return pokemonList;
   }
 
+  function search(name){
+    return pokemonList.filter((pokemon) => {name === pokemon.name});
+  }
+
   return {
     add: add,
-    getAll: getAll
+    getAll: getAll,
+    search: search
   };
 })();
 
@@ -48,6 +53,8 @@ pokemonPrint.forEach(function(pokemon){
   document.write("<br>");
 });
 
-pokemonRepository.add({name: "Diglet", types: ["fighter", "dark"]});
+pokemonRepository.add({name: "Diglet", height: 1.2, types: ["fighter", "dark"]});
 
 console.log(pokemonRepository.getAll());
+
+console.log(pokemonRepository.search("Bulbasaur"));
