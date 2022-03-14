@@ -1,10 +1,35 @@
 let pokemonRepository = (function(){
   let pokemonList =[];
-  pokemonList = [
-  {name: "Bulbasaur", height: 0.7, types: ["Grass", "Poison"]},
-  {name:"Charmander", height: 0.6, types: ["fire"]},
-  {name: "Squirtle", height: 0.5, types: ["water"]}
-  ];
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+
+  function loadList(){
+    fetch(apiUrl).then(function(response){
+      return response.json();
+    }).then(function(pokemonList){
+      pokemonList.results.forEach(function(item){
+        let pokemon = {
+          name: item.name,
+          detailsUrl: item.url
+        };
+        add(pokemon);
+      })
+    }).catch(function (e){
+      console.log(e);
+    });
+  }
+
+  function loadDetails(item) {
+    let url = item.detailsUrl;
+    return fetch(url).then(function (response) {
+      return response.json();
+    }).then(function (details) {
+      item.imageUrl = details.sprites.front_default;
+      item.height = details.height;
+      item.types = details.types;
+    }).catch(function (e) {
+      console.error(e);
+    });
+  }
 
   function isEqual(array1,array2){
     if(array1.length === array2.length){
@@ -19,7 +44,7 @@ let pokemonRepository = (function(){
   }
 
   function add(pokemon){
-    if(typeof pokemon === "object" && isEqual(Object.keys(pokemon), Object.keys(pokemonList[0]))){
+    if(typeof pokemon === "object" && "name" in pokemon && "detailsUrl" in pokemon){
     pokemonList.push(pokemon);
   } else{
     alert("Please enter a valid pokemon.");
@@ -45,24 +70,28 @@ let pokemonRepository = (function(){
     })
     listItem.appendChild(button);
     list.appendChild(listItem);
+
   }
 
   return {
     add: add,
     getAll: getAll,
     search: search,
-    addListItem: addListItem
+    addListItem: addListItem,
+    loadList: loadList,
+    loadDetails: loadDetails
   };
 })();
 
+pokemonRepository.loadList();
+
 let pokemonPrint = pokemonRepository.getAll();
+
+console.log("1", pokemonPrint);
 
 pokemonPrint.forEach(function(pokemon){
   pokemonRepository.addListItem(pokemon);
 });
 
-pokemonRepository.add({name: "Diglet", height: 1.2, types: ["fighter", "dark"]});
 
-console.log(pokemonRepository.getAll());
-
-console.log(pokemonRepository.search("Bulbasaur"));
+console.log(pokemonPrint);
