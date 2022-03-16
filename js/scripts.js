@@ -3,7 +3,7 @@ let pokemonRepository = (function(){
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
   function loadList(){
-    fetch(apiUrl).then(function(response){
+    return fetch(apiUrl).then(function(response){
       return response.json();
     }).then(function(pokemonList){
       pokemonList.results.forEach(function(item){
