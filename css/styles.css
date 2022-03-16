@@ -17,6 +17,10 @@ h1 {
   font-size: 48px;
 }
 
+.hidden{
+  display: none;
+}
+
 @media all and (max-width: 500px) {
   .pokemon-list {
     grid-template-columns: 1fr;
