@@ -89,8 +89,10 @@ let pokemonPrint = pokemonRepository.getAll();
 
 console.log("1", pokemonPrint);
 
-pokemonPrint.forEach(function(pokemon){
-  pokemonRepository.addListItem(pokemon);
+pokemonRepository.loadList().then(function () {
+  pokemonPrint.forEach(function (pokemon) {
+    pokemonRepository.addListItem(pokemon);
+  });
 });
 
 
