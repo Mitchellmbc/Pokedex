@@ -21,6 +21,23 @@ h1 {
   display: none;
 }
 
+#modal-container {
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  padding: 20px;
+  box-sizing: border-box;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  /*Above other content*/
+  z-index: 999;
+
+  /*Scrolling if window too small*/
+  overflow: auto;
+}
+
 @media all and (max-width: 500px) {
   .pokemon-list {
     grid-template-columns: 1fr;
