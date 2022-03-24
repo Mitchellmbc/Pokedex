@@ -126,6 +126,7 @@ let pokemonRepository = (function(){
 
     let contentElement = document.createElement('p');
     contentElement.innerText = `Height: ${text}`;
+    contentElement.classList.add('center');
 
     modal.appendChild(closeButtonElement);
     modal.appendChild(titleElement);
