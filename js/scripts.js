@@ -90,7 +90,7 @@ let pokemonRepository = (function(){
     let listItem = document.createElement('li');
     let button = document.createElement('button');
     button.innerText = pokemon.name;
-    button.classList.add('pokemon-button');
+    button.classList.add('btn', 'btn-primary', 'pokemon-button');
     listItem.classList.add('group-list-item');
 
     button.addEventListener('click', function(event){
@@ -113,7 +113,7 @@ let pokemonRepository = (function(){
 
     //new content
     let closeButtonElement = document.createElement('button');
-    closeButtonElement.classList.add('modal-close');
+    closeButtonElement.classList.add('modal-close', 'btn', 'btn-secondary');
     closeButtonElement.innerText = 'Close';
     closeButtonElement.addEventListener('click', hideModal);
 
